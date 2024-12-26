@@ -1,0 +1,55 @@
+@if (playerWon) {
+  <div class="win-message">
+    <span
+      >You won {{ cardService.winValue() * betValue | currency: "EUR" }}!</span
+    >
+  </div>
+}
+<div class="scratch-card-container">
+  <div class="balance-container">
+    <span class="label">Balance: {{ balance }}</span>
+    <button class="history-button" (click)="openHistoryModal()">
+      <i class="fas fa-history"></i> History
+    </button>
+  </div>
+  <div class="bet-options">
+    <span class="bet-value">Bet value:</span>
+    @for (value of betValues; track value) {
+      <label class="checkbox-container">
+        <input
+          [disabled]="percent !== 0"
+          type="radio"
+          name="betOption"
+          [value]="value"
+          [(ngModel)]="betValue"
+        />
+        <span> {{ value }}</span>
+        <span class="checkmark"></span>
+      </label>
+    }
+  </div>
+  <div class="buttons-container">
+    <button
+      class="refresh-button"
+      (click)="resetCard()"
+      [disabled]="percent !== 100"
+    >
+      <i class="fas fa-sync"></i> Play again
+    </button>
+    <button
+      class="play-button"
+      (click)="finish(true)"
+      [disabled]="percent !== 0"
+    >
+      <i class="fas fa-play"></i> Wager
+    </button>
+  </div>
+  <div #tableContainer class="table-container">
+    @for (item of cardService.cards(); track $index) {
+      <div class="coin">{{ item | currency: "EUR" }}</div>
+    }
+  </div>
+  <div #canvas>
+    <canvas id="myCanvas" width="200" height="100"></canvas>
+  </div>
+</div>

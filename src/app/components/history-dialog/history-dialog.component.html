@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>
+  <span>History</span>
+  <i class="fa fa-times" (click)="closeModal()"></i>
+</h2>
+<mat-dialog-content>
+  @if (cardService.historyItems().length > 0) {
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Cards</th>
+          <th>Win</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of cardService.historyItems(); track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ item.date | date: "short" }}</td>
+            <td>{{ item.cards.join(", ") }}</td>
+            <td>{{ item.win | currency: 'EUR'}}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <span>There isn't any history</span>
+  }
+</mat-dialog-content>
