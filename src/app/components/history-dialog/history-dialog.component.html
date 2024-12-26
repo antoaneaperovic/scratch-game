@@ -11,6 +11,7 @@
           <th>Date</th>
           <th>Cards</th>
           <th>Win</th>
+          <th>Bet value</th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +20,8 @@
             <td>{{ $index + 1 }}</td>
             <td>{{ item.date | date: "short" }}</td>
             <td>{{ item.cards.join(", ") }}</td>
-            <td>{{ item.win | currency: 'EUR'}}</td>
+            <td>{{ item.win | currency: "EUR" }}</td>
+            <td>{{ item.betValue }}</td>
           </tr>
         }
       </tbody>

@@ -1,7 +1,10 @@
 @if (playerWon) {
   <div class="win-message">
     <span
-      >You won {{ cardService.winValue() * betValue | currency: "EUR" }}!</span
+      >You won
+      {{
+        cardService.winValue() * this.cardService.betValue() | currency: "EUR"
+      }}!</span
     >
   </div>
 }
@@ -17,7 +20,6 @@
     @for (value of betValues; track value) {
       <label class="checkbox-container">
         <input
-          [disabled]="percent !== 0"
           type="radio"
           name="betOption"
           [value]="value"

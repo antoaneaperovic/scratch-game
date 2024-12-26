@@ -46,6 +46,7 @@ export class CardsService {
       date: new Date(Date.now()),
       cards: this.cards(),
       win: this.winValue() * this.betValue(),
+      betValue: this.betValue(),
     };
 
     this.historyItems.update((items) => {

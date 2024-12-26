@@ -3,4 +3,5 @@ export interface HistoryItem {
   date: Date;
   win: number;
   cards: number[];
+  betValue: number;
 }
